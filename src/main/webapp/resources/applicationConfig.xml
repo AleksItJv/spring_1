@@ -29,15 +29,15 @@
     </bean>
 
     <bean id="sony" class="impl.audiosystem.Sony" >
-        <constructor-arg name="playlist" ref="songSet"/>
+        <constructor-arg name="playlist" ref="songMap"/>
         <property name="name" value="Sony Music"/>
     </bean>
 
-    <util:set id="songSet" set-class="java.util.HashSet" >
-                <ref bean="rock"/>
-                <ref bean="relax"/>
-                <ref bean="pop"/>
-    </util:set>
+    <util:map id="songMap" map-class="java.util.HashMap" >
+        <entry key="song1" value-ref="relax"/>
+        <entry key="song2" value-ref="rock"/>
+        <entry key="song3" value-ref="pop"/>
+    </util:map>
 
 <!--    <bean id="songSet" class="MusicCollection" >
         <property name="songSet">
