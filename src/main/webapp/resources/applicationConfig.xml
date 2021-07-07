@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean id="audi2012" class="impl.car.Audi" scope="prototype" init-method="initDefaultAudi">
+        <constructor-arg name="engine" ref="v6"/>
+        <constructor-arg name="audiosystem" ref="sony"/>
+        <property name="year" value="2012"/>
+        <property name="version" value="1"/>
+<!--        <constructor-arg type="java.lang.Integer" value="2012"/>
+        <constructor-arg type="java.lang.Integer" value="1"/>-->
+<!--        <constructor-arg index="0" value="2012" />
+        <constructor-arg index="1" value="1" />-->
+    </bean>
+
+    <bean id="audi2015" class="impl.car.Audi" scope="prototype" init-method="initDefaultAudi">
+        <constructor-arg name="engine" ref="v6"/>
+        <constructor-arg name="audiosystem" ref="sony"/>
+        <property name="version" value="2"/>
+        <property name="year" value="2015"/>
+    </bean>
+
+    <bean id="sony" class="impl.audiosystem.Sony" >
+        <constructor-arg name="playlist" ref="songSet"/>
+        <property name="name" value="Sony Music"/>
+    </bean>
+
+    <util:set id="songSet" set-class="java.util.HashSet" >
+                <ref bean="rock"/>
+                <ref bean="relax"/>
+                <ref bean="pop"/>
+    </util:set>
+
+<!--    <bean id="songSet" class="MusicCollection" >
+        <property name="songSet">
+            <set>
+                <ref bean="rock"/>
+                <ref bean="relax"/>
+                <ref bean="pop"/>
+            </set>
+        </property>
+    </bean>-->
+
+    <bean id="bmw" class="impl.car.BMW">
+        <property name="engine" ref="v8"/>
+    </bean>
+
+    <bean name="v6" class="impl.engine.V6">
+        <property name="model" value="V6"/>
+    </bean>
+
+    <bean name="v8" class="impl.engine.V8">
+        <property name="cylinder" value="8"/>
+    </bean>
+
+    <bean id="relax" class="impl.songs.Song">
+        <constructor-arg value="relax"/>
+    </bean>
+
+    <bean id="rock" class="impl.songs.Song">
+        <constructor-arg value="rock"/>
+    </bean>
+
+    <bean id="pop" class="impl.songs.Song">
+        <constructor-arg value="pop"/>
+    </bean>
+
+
+</beans>
